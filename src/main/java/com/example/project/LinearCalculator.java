@@ -45,8 +45,8 @@ public class LinearCalculator{
     //calculates the y intercept of the equation and returns the value to the nearest HUNDREDTH
     //if y-int if undefined, should return -999.99
     public double yInt(){
-        if ((x2 - x1) != 0) {
-            return roundedToHundredth(y1 - (x1 * slope()));
+        if ((x2 - x1) != 0) { // executes if slope is not undefined
+            return roundedToHundredth(y1 - (x1 * slope())); // uses the first point and the slope to calculate y Intercept working backwards
         }
         return -999.99;
     }
@@ -56,7 +56,7 @@ public class LinearCalculator{
     //if slope is undefined, should return -999.99
     public double slope(){
         if ((x2 - x1) != 0) {
-            return roundedToHundredth((double) (y2 - y1) / (x2 - x1));
+            return roundedToHundredth((double) (y2 - y1) / (x2 - x1)); // divides the y difference by the y difference (rise over run)
         }
         return -999.99;
     }
@@ -68,29 +68,29 @@ public class LinearCalculator{
     public String equation(){
         double slope = slope();
         double yInt = yInt(); 
-        if (slope == -999.99) {
+        if (slope == -999.99) { // checks if slope is undefined (in which case it returns undefined immediately)
             return "undefined";
         }
-        String str = "y=";
+        String str = "y="; // starts equation with y=
         if (slope != 0) {
-            str += slope + "x";
+            str += slope + "x"; // adds the slope and x if the slope isn't zero
 
             if (yInt > 0) {
-                str += "+";
+                str += "+"; // adds a plus if the slope isn't zero and the yInt is > 0 (not < 0 because negatives already include a - sign)
             }
         }
         if (yInt != 0) {
-            str += yInt;
+            str += yInt; // adds the y-Int if it's not zero
         }
-        return str;
+        return str; // returns the final equation
     }
 
 
     //roundedToHundredth(double x)-> returns double
     //calculates the input to the nearest hundredth and returns that value
     public double roundedToHundredth(double x){
-        if (x > 0) {
-            return (int) (x * 100 + 0.5) / 100.0;
+        if (x > 0) { // checks if x is > or <= 0 to decide whether to add or subtract 0.5
+            return (int) (x * 100 + 0.5) / 100.0; // uses multiplication, casting, & division to round to 2 ints
         }
         return (int) (x * 100 - 0.5) / 100.0;
     }
@@ -99,7 +99,7 @@ public class LinearCalculator{
     //this method is tested but you can also call it in your main method if gradle tests are 
     //not working. 
     public String printInfo(){
-        String str = "The two points are: (" + x1 + "," + y1  + ")";
+        String str = "The two points are: (" + x1 + "," + y1  + ")"; // ever line simply uses functions and values to append to the given strings
         str += " and " + "(" + x2 + "," + y2 + ")";
         str += "\nThe equation of the line between these points is: " + equation();
         str += "\nThe slope of this line is: " + slope();
