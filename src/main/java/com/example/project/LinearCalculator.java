@@ -9,7 +9,6 @@ public class LinearCalculator{
 
     /** The y coordinate of the first point */
     private int y1;
-
     /** The x coordinate of the second point */
     private int x2;
 
@@ -20,7 +19,7 @@ public class LinearCalculator{
      * @param coord1 The first point represented as a String
      * @param coord2 The second point represented as a String 
      */
-    public LinearCalculator(String coord1, String coord2){ // <--add 2 string parameters to this constructor
+    public LinearCalculator(String coord1, String coord2){ // add 2 string parameters to this constructor
         int idx = coord1.indexOf(","); // finds the index of the comma in the coordinate pair
         x1 = Integer.parseInt(coord1.substring(1, idx)); // picks out characters between the open parenthesis and the comma
         y1 = Integer.parseInt(coord1.substring(idx + 1, coord1.length() - 1)); // picks out characters after the comma and before the closing parenthesis
@@ -114,7 +113,7 @@ public class LinearCalculator{
             str += slope + "x"; // adds the slope and x if the slope isn't zero
 
             if (yInt > 0) {
-                str += "+"; // adds a plus if the slope isn't zero and the yInt is > 0 (not < 0 because negatives already include a - sign)
+                str += "+"; // adds a plus if the slope isn't zero and the yInt is greater 0 (not less than 0 because negatives already include a - sign)
             }
         }
         if (yInt != 0) {
@@ -130,7 +129,7 @@ public class LinearCalculator{
      * @return The rounded value
     */
     public double roundedToHundredth(double x){
-        if (x > 0) { // checks if x is > or <= 0 to decide whether to add or subtract 0.5
+        if (x > 0) { // checks if x is > or less than or equal to 0 to decide whether to add or subtract 0.5
             return (int) (x * 100 + 0.5) / 100.0; // uses multiplication, casting, & division to round to 2 ints
         }
         return (int) (x * 100 - 0.5) / 100.0;
